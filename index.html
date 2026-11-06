@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Her Diwali Journey ✨</title>
+  <meta name="description" content="A little planner for a beautiful Diwali journey home." />
+  <link rel="stylesheet" href="styles/style.css" />
+</head>
+<body>
+  <div class="lights" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+  <main class="page">
+    <header class="hero">
+      <div class="eyebrow">A LITTLE FESTIVE SURPRISE ✨</div>
+      <h1>Home for <span>Diwali</span></h1>
+      <p class="hero-copy">A little checklist for a journey full of warmth, sweets, lights, and lovely memories.</p>
+      <div class="hero-actions">
+        <a class="button button-primary" href="#checklist">Let’s get ready <span>↘</span></a>
+        <button class="button button-ghost" id="messageBtn" type="button">A little note 💌</button>
+      </div>
+      <div class="note hidden" id="personalNote">May your journey be safe, your heart be light, and your home be filled with happiness. Happy Diwali! 🪔</div>
+      <div class="hero-art" aria-hidden="true"><span class="spark spark-a">✦</span><span class="spark spark-b">✧</span><div class="diya"><div class="flame"></div><div class="bowl"></div><div class="base"></div></div><span class="spark spark-c">✦</span></div>
+    </header>
+
+    <section class="countdown-card">
+      <div><p class="section-kicker">THE JOURNEY IS CALLING</p><h2>Countdown to the festive day</h2><p class="muted">One little moment closer to home.</p></div>
+      <div class="countdown" id="countdown" aria-live="polite"><div><strong>--</strong><span>Days</span></div><div><strong>--</strong><span>Hours</span></div><div><strong>--</strong><span>Minutes</span></div><div><strong>--</strong><span>Seconds</span></div></div>
+    <p class="date-note">Countdown date: <span id="dateLabel">1 November 2026</span> <button id="changeDate" class="text-button" type="button">Change date</button></p>
+    </section>
+
+    <section class="planner" id="checklist">
+      <div class="section-heading"><div><p class="section-kicker">READY, SET, PACK!</p><h2>Your travel checklist</h2><p class="muted">Tick things off as you go. Your progress is saved on this device.</p></div><span class="bag-icon">🧳</span></div>
+      <div class="progress-wrap"><div class="progress-meta"><span id="progressText">0 of 0 completed</span><strong id="progressPercent">0%</strong></div><div class="progress-track"><div id="progressBar"></div></div></div>
+      <div class="filter-row"><button class="filter active" data-filter="all">Everything</button><button class="filter" data-filter="open">To do</button><button class="filter" data-filter="done">Done</button></div>
+      <ul class="task-list" id="taskList"></ul>
+      <form id="addTaskForm" class="add-task"><input id="taskInput" type="text" maxlength="100" placeholder="Add something you don't want to forget…" aria-label="New checklist item" required/><button class="button button-primary" type="submit">＋ Add</button></form>
+      <div class="reset-row"><button class="text-button" id="resetTasks" type="button">Reset checklist</button><span>Made with a little extra love ♡</span></div>
+    </section>
+
+    <section class="reminder-card">
+      <div class="reminder-icon">🔔</div><div><p class="section-kicker">DON’T FORGET</p><h2>Last-minute reminders</h2><p class="muted">A few tiny things that make travelling smoother.</p><ul><li>Keep ticket and ID handy</li><li>Charge your phone & power bank</li><li>Share your travel plan with someone</li><li>Check the weather before leaving</li></ul></div>
+    </section>
+
+    <section class="surprise-grid" aria-label="Little surprises">
+      <article class="surprise-card quiz-card">
+        <p class="section-kicker">A TINY GAME</p><h2>A little love quiz 💗</h2>
+        <p class="muted" id="quizQuestion">Ready for a few fun questions?</p>
+        <div class="quiz-options" id="quizOptions"></div>
+        <p class="game-feedback" id="quizFeedback" aria-live="polite"></p>
+        <button class="button button-primary" id="startQuiz" type="button">Start the quiz ✨</button>
+      </article>
+      <article class="surprise-card heart-card">
+        <p class="section-kicker">PICK YOUR SURPRISE</p><h2>Choose a little heart 💌</h2>
+        <p class="muted">Each heart is hiding a tiny message for you.</p>
+        <div class="heart-picks">
+          <button type="button" class="heart-pick" data-message="You deserve all the happiness in the world. ❤️" aria-label="Pick heart one">♡</button>
+          <button type="button" class="heart-pick" data-message="Sending you the warmest hug for your journey. 🤗" aria-label="Pick heart two">♡</button>
+          <button type="button" class="heart-pick" data-message="No matter the distance, you are always special. 💖" aria-label="Pick heart three">♡</button>
+        </div>
+        <p class="game-feedback" id="heartMessage" aria-live="polite">Tap a heart to reveal your message.</p>
+      </article>
+    </section>
+
+    <section class="shayari-card">
+      <p class="section-kicker">WORDS FROM THE HEART</p>
+      <h2>A little shayari for you 🌹</h2>
+      <p class="shayari-text" id="shayariText">राहें खूबसूरत हों, मंज़िल का नज़ारा प्यारा हो,
+हर कदम पर खुशियाँ हों, और अपनों का सहारा हो।</p>
+      <button class="button button-ghost" id="nextShayari" type="button">One more shayari ↗</button>
+    </section>
+
+    <section class="thought-card">
+      <span class="thought-mark">“</span>
+      <p class="section-kicker">A THOUGHT TO KEEP</p>
+      <p id="thoughtText">Some journeys take you home; some bring you closer to the people who feel like home.</p>
+      <span class="thought-sparkle">✦ ✧ ✦</span>
+    </section>
+
+
+    
+<!-- SWEETS SECTION -->
+<section class="festival-section sweets-section" id="sweets">
+  <p class="section-tag">A little sweetness</p>
+  <h2>🍬 Diwali Sweet Corner</h2>
+  <p>Because every celebration deserves something sweet!</p>
+
+  <div class="sweet-grid">
+    <div class="sweet-card">
+      <div class="sweet-animation laddoo">🟠</div>
+      <h3>Motichoor Laddoo</h3>
+      <p>Round, sweet and full of happiness!</p>
+    </div>
+
+    <div class="sweet-card">
+      <div class="sweet-animation">🍥</div>
+      <h3>Jalebi</h3>
+      <p>Twists of sweetness and joy.</p>
+    </div>
+
+    <div class="sweet-card">
+      <div class="sweet-animation">🍬</div>
+      <h3>Kaju Katli</h3>
+      <p>A little piece of celebration.</p>
+    </div>
+
+    <div class="sweet-card">
+      <div class="sweet-animation">🍫</div>
+      <h3>Chocolate Treat</h3>
+      <p>For your sweetest moments.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- LADDOO GAME -->
+<section class="festival-section" id="laddooGame">
+  <p class="section-tag">Let's play!</p>
+  <h2>🟠 Catch the Laddoos</h2>
+  <p>Move your plate and catch as many laddoos as possible!</p>
+
+  <div class="game-info">
+    <span>Score: <strong id="laddooScore">0</strong></span>
+    <span>Time: <strong id="laddooTime">30</strong>s</span>
+  </div>
+
+  <div class="laddoo-game-area" id="laddooGameArea">
+    <div class="game-plate" id="gamePlate">🥣</div>
+  </div>
+
+  <div class="game-controls">
+    <button id="moveLeft">⬅️</button>
+    <button id="startLaddooGame">Start Game ❤️</button>
+    <button id="moveRight">➡️</button>
+  </div>
+
+  <p id="laddooGameMessage">Ready for some sweetness?</p>
+</section>
+
+
+<!-- DANCE SECTION -->
+<section class="festival-section dance-section" id="dance">
+  <p class="section-tag">Celebrate happiness</p>
+  <h2>💃 Let's Dance This Diwali</h2>
+  <p>Music, lights and endless celebrations!</p>
+
+  <div class="dance-stage" id="danceStage">
+    <div class="dancer dancer-one">💃</div>
+    <div class="dancer dancer-two">🕺</div>
+    <div class="dancer dancer-three">💃</div>
+  </div>
+
+  <button id="danceToggle" class="festival-btn">
+    Start Dancing ✨
+  </button>
+
+  <p id="danceMessage">The dance floor is waiting for you!</p>
+</section>
+
+
+<!-- RANGOLI SECTION -->
+<section class="festival-section rangoli-section" id="rangoli">
+  <p class="section-tag">Colours of happiness</p>
+  <h2>🎨 Beautiful Diwali Rangoli</h2>
+  <p>A little colour to make your celebration brighter.</p>
+
+  <div class="rangoli-stage">
+    <div class="rangoli" id="rangoliArt">
+      <div class="rangoli-ring ring-one"></div>
+      <div class="rangoli-ring ring-two"></div>
+      <div class="rangoli-ring ring-three"></div>
+      <div class="rangoli-center">🪔</div>
+      <div class="rangoli-petal petal-one"></div>
+      <div class="rangoli-petal petal-two"></div>
+      <div class="rangoli-petal petal-three"></div>
+      <div class="rangoli-petal petal-four"></div>
+      <div class="rangoli-petal petal-five"></div>
+      <div class="rangoli-petal petal-six"></div>
+    </div>
+  </div>
+
+  <button id="changeRangoli" class="festival-btn">
+    Change Rangoli Colours 🌈
+  </button>
+</section>
+
+
+<!-- TRAIN STATION -->
+<section class="festival-section station-section" id="station">
+  <p class="section-tag">The journey home</p>
+  <h2>🚂 Your Train Is Arriving!</h2>
+  <p>Platform par intezaar khatam hone wala hai!</p>
+
+  <div class="station-scene">
+    <div class="station-board">
+      🚉 DIWALI EXPRESS
+      <small>WELCOME HOME ❤️</small>
+    </div>
+
+    <div class="station-lights">
+      <span>✨</span><span>✨</span><span>✨</span>
+    </div>
+
+    <div class="train-track"></div>
+
+    <div class="train" id="diwaliTrain">
+      <div class="train-engine">🚂</div>
+      <div class="train-coach">🚃</div>
+      <div class="train-coach">🚃</div>
+      <div class="train-coach">🚃</div>
+    </div>
+
+    <div class="platform">
+      <span>🧳</span>
+      <span>🪔</span>
+      <span>🌸</span>
+    </div>
+  </div>
+
+  <button id="trainButton" class="festival-btn">
+    Welcome the Train ❤️
+  </button>
+
+  <p id="trainMessage">
+    Your special journey is waiting!
+  </p>
+</section>
+
+
+
+    <footer>Wishing you a safe journey & a sparkling Diwali <span>🪔</span></footer>
+  </main>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="js/checklist.js"></script><script src="js/countdown.js"></script><script src="js/reminders.js"></script><script src="js/script.js"></script>
+</body>
+</html>

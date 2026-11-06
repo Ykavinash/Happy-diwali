@@ -1,0 +1,15 @@
+@use "variables" as v;
+@media (max-width:700px) {
+ .page { width:min(100% - 22px, 560px); padding-top:22px; }
+ .hero { padding:42px 8px 24px; }
+ .countdown-card { grid-template-columns:1fr; padding:22px; }
+ .countdown { justify-content:space-between; }.countdown div { flex:1; min-width:0; }
+ .countdown strong { font-size:1.25rem; }
+ .planner,.reminder-card { padding:21px 17px; }
+ h2 { font-size:1.45rem; }
+ .section-heading { align-items:flex-start; }.bag-icon { font-size:2rem; }
+ .add-task { flex-direction:column; }.add-task .button { width:100%; }
+ .reset-row { align-items:flex-start; flex-direction:column; }
+}
+@media (max-width:700px) { .surprise-grid { grid-template-columns:1fr; } .surprise-card,.shayari-card,.thought-card { padding:22px 18px; } .thought-card #thoughtText { font-size:1.1rem; } }
+@media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; scroll-behavior:auto !important; transition-duration:.01ms !important; } }
