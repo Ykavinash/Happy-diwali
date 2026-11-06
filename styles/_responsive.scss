@@ -12,4 +12,28 @@
  .reset-row { align-items:flex-start; flex-direction:column; }
 }
 @media (max-width:700px) { .surprise-grid { grid-template-columns:1fr; } .surprise-card,.shayari-card,.thought-card { padding:22px 18px; } .thought-card #thoughtText { font-size:1.1rem; } }
+@media (max-width:700px) {
+ .section-nav { justify-content:flex-start; margin:0 -1px 14px; padding:7px; overflow-x:auto; overscroll-behavior-x:contain; scrollbar-width:thin; }
+ .section-nav a { padding:9px 12px; }
+ .trip-card { padding:22px 17px; }
+ .trip-form { grid-template-columns:1fr; gap:13px; }
+ .trip-save { width:100%; }
+ .date-note { align-items:flex-start; flex-direction:column; }
+ .date-note input { width:100%; }
+ .game-controls { flex-wrap:wrap; gap:8px; }
+ .game-controls button { min-width:48px; min-height:48px; }
+ .game-controls #startLaddooGame { flex:1; }
+}
+@media (max-width:380px) {
+ .countdown { gap:5px; }
+ .countdown div { padding:10px 4px; }
+ .countdown strong { font-size:1.1rem; }
+ .section-nav a { padding:8px 10px; font-size:.8rem; }
+}
+@media (prefers-reduced-motion:reduce) {
+ .dance-stage.dancing .dancer,.rangoli,.sweet-animation { animation:none !important; }
+ .train.arriving { left:8%; animation:none !important; }
+ .train.departing,.train.departed { left:110%; animation:none !important; }
+ .station-passenger.passenger-arriving,.station-passenger.passenger-waving { opacity:1; transform:none; animation:none !important; }
+}
 @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; scroll-behavior:auto !important; transition-duration:.01ms !important; } }

@@ -8,6 +8,18 @@
   <link rel="stylesheet" href="styles/style.css" />
 </head>
 <body>
+  <dialog class="diya-intro" id="diyaIntro" aria-labelledby="diyaIntroTitle" aria-describedby="diyaIntroHint">
+    <div class="intro-light-wash" aria-hidden="true"></div>
+    <div class="intro-glow" aria-hidden="true"></div>
+    <p class="intro-kicker">A LITTLE LIGHT, A LOT OF LOVE</p>
+    <h2 id="diyaIntroTitle">Your Diwali story is waiting</h2>
+    <button class="intro-diya" id="lightWelcomeDiya" type="button" aria-label="Light the diya and reveal the Diwali website">
+      <span class="intro-flame" aria-hidden="true"></span>
+      <span class="intro-bowl" aria-hidden="true">🪔</span>
+      <span class="intro-tap">Tap to light your diya</span>
+    </button>
+    <p id="diyaIntroHint">Tap the diya to light it and reveal your festive surprise.</p>
+  </dialog>
   <div class="lights" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
   <main class="page">
     <header class="hero">
@@ -22,16 +34,62 @@
       <div class="hero-art" aria-hidden="true"><span class="spark spark-a">✦</span><span class="spark spark-b">✧</span><div class="diya"><div class="flame"></div><div class="bowl"></div><div class="base"></div></div><span class="spark spark-c">✦</span></div>
     </header>
 
+    <nav class="section-nav" aria-label="Page sections">
+      <a href="#checklist">Checklist</a>
+      <a href="#trip">My trip</a>
+      <a href="#festive-fun">Fortune &amp; games</a>
+      <a href="#sweets">Sweets</a>
+      <a href="#laddooGame">Game</a>
+      <a href="#fireworks">Fireworks</a>
+      <a href="#rangoli">Rangoli</a>
+      <a href="#diwali-world">World lights</a>
+      <a href="#station">Train</a>
+      <a href="#festive-outfits">Outfits</a>
+    </nav>
+
     <section class="countdown-card">
       <div><p class="section-kicker">THE JOURNEY IS CALLING</p><h2>Countdown to the festive day</h2><p class="muted">One little moment closer to home.</p></div>
       <div class="countdown" id="countdown" aria-live="polite"><div><strong>--</strong><span>Days</span></div><div><strong>--</strong><span>Hours</span></div><div><strong>--</strong><span>Minutes</span></div><div><strong>--</strong><span>Seconds</span></div></div>
-    <p class="date-note">Countdown date: <span id="dateLabel">1 November 2026</span> <button id="changeDate" class="text-button" type="button">Change date</button></p>
+      <label class="date-note" for="countdownDate">Countdown date <input id="countdownDate" type="date" /></label>
+    </section>
+
+    <section class="trip-card" id="trip">
+      <div class="section-heading">
+        <div><p class="section-kicker">MAKE IT YOURS</p><h2>Your journey details</h2><p class="muted">Add a few details to make this little planner yours. They stay on this device.</p></div>
+        <span class="trip-icon" aria-hidden="true">🗺️</span>
+      </div>
+      <form id="tripForm" class="trip-form">
+        <label>Where are you going?
+          <input id="tripDestination" name="destination" type="text" maxlength="80" placeholder="City, town or home" required />
+        </label>
+        <label>Travel date
+          <input id="tripDate" name="date" type="date" />
+        </label>
+        <label>How are you travelling?
+          <select id="tripTransport" name="transport">
+            <option value="Train">Train</option>
+            <option value="Car">Car</option>
+            <option value="Bus">Bus</option>
+            <option value="Flight">Flight</option>
+            <option value="Other">Other</option>
+          </select>
+        </label>
+        <label>Travelling with <span class="optional-label">(optional)</span>
+          <input id="tripCompanion" name="companion" type="text" maxlength="80" placeholder="Add a name" />
+        </label>
+        <button class="button button-primary trip-save" type="submit">Save my trip ✨</button>
+      </form>
+      <p class="trip-status" id="tripStatus" aria-live="polite">Your trip details are saved only when you choose Save.</p>
     </section>
 
     <section class="planner" id="checklist">
       <div class="section-heading"><div><p class="section-kicker">READY, SET, PACK!</p><h2>Your travel checklist</h2><p class="muted">Tick things off as you go. Your progress is saved on this device.</p></div><span class="bag-icon">🧳</span></div>
-      <div class="progress-wrap"><div class="progress-meta"><span id="progressText">0 of 0 completed</span><strong id="progressPercent">0%</strong></div><div class="progress-track"><div id="progressBar"></div></div></div>
-      <div class="filter-row"><button class="filter active" data-filter="all">Everything</button><button class="filter" data-filter="open">To do</button><button class="filter" data-filter="done">Done</button></div>
+      <div class="progress-wrap"><div class="progress-meta"><span id="progressText">0 of 0 completed</span><strong id="progressPercent">0%</strong></div><div class="progress-track" role="progressbar" aria-label="Checklist progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="progressBar"></div></div></div>
+      <div class="filter-row" aria-label="Filter checklist">
+        <button class="filter active" type="button" data-filter="all" aria-pressed="true">Everything</button>
+        <button class="filter" type="button" data-filter="open" aria-pressed="false">To do</button>
+        <button class="filter" type="button" data-filter="done" aria-pressed="false">Done</button>
+      </div>
       <ul class="task-list" id="taskList"></ul>
       <form id="addTaskForm" class="add-task"><input id="taskInput" type="text" maxlength="100" placeholder="Add something you don't want to forget…" aria-label="New checklist item" required/><button class="button button-primary" type="submit">＋ Add</button></form>
       <div class="reset-row"><button class="text-button" id="resetTasks" type="button">Reset checklist</button><span>Made with a little extra love ♡</span></div>
@@ -53,9 +111,9 @@
         <p class="section-kicker">PICK YOUR SURPRISE</p><h2>Choose a little heart 💌</h2>
         <p class="muted">Each heart is hiding a tiny message for you.</p>
         <div class="heart-picks">
-          <button type="button" class="heart-pick" data-message="You deserve all the happiness in the world. ❤️" aria-label="Pick heart one">♡</button>
-          <button type="button" class="heart-pick" data-message="Sending you the warmest hug for your journey. 🤗" aria-label="Pick heart two">♡</button>
-          <button type="button" class="heart-pick" data-message="No matter the distance, you are always special. 💖" aria-label="Pick heart three">♡</button>
+          <button type="button" class="heart-pick" aria-label="Reveal a new message from heart one">♡</button>
+          <button type="button" class="heart-pick" aria-label="Reveal a new message from heart two">♡</button>
+          <button type="button" class="heart-pick" aria-label="Reveal a new message from heart three">♡</button>
         </div>
         <p class="game-feedback" id="heartMessage" aria-live="polite">Tap a heart to reveal your message.</p>
       </article>
@@ -76,6 +134,72 @@
       <span class="thought-sparkle">✦ ✧ ✦</span>
     </section>
 
+    <section class="secret-card-section" aria-labelledby="secretCardTitle">
+      <p class="section-kicker">SEALED WITH A LITTLE LOVE</p>
+      <h2 id="secretCardTitle">A secret Diwali card 💌</h2>
+      <p class="muted">Someone left a little surprise just for you.</p>
+      <button class="secret-card" id="secretCard" type="button" aria-expanded="false" aria-controls="secretCardMessage">
+        <span class="secret-card-front">
+          <span class="secret-stamp" aria-hidden="true">🪔</span>
+          <span class="secret-card-label">A little surprise</span>
+          <span class="secret-card-instruction">Tap to open your card ✨</span>
+        </span>
+        <span class="secret-card-inside" id="secretCardMessage" aria-hidden="true">
+          <span class="secret-card-label">A wish for you</span>
+          <span class="secret-wish-copy">May your home glow with laughter, your heart feel light, and your days be as sweet as a box of mithai. You make the world brighter just by being in it. Happy Diwali! 🪔❤️</span>
+        </span>
+      </button>
+      <button class="button button-ghost secret-card-next" id="nextSecretWish" type="button">Another little wish 💌</button>
+      <p class="secret-wish-count" id="secretWishCount" aria-live="polite">Wish 1 of 12</p>
+    </section>
+
+    <section class="festival-fun" id="festive-fun">
+      <div class="fun-heading">
+        <p class="section-kicker">YOUR FESTIVE PLAYGROUND</p>
+        <h2>Fortunes, giggles &amp; a little magic ✨</h2>
+        <p class="muted">Put your name in the diya for a cheerful Diwali fortune, then try the matching game.</p>
+      </div>
+      <div class="fun-grid">
+        <article class="fun-card fortune-card">
+          <div class="fortune-diya" aria-hidden="true">🪔</div>
+          <p class="section-kicker">THE DIWALI FORTUNE DIYA</p>
+          <h3>Who’s making a wish?</h3>
+          <form id="fortuneForm" class="fortune-form">
+            <label for="fortuneName">Your name</label>
+            <div class="fortune-input-row">
+              <input id="fortuneName" type="text" maxlength="40" autocomplete="given-name" placeholder="Type your name" required />
+              <button class="button button-primary" type="submit">Ask my fortune ✨</button>
+            </div>
+          </form>
+          <p class="fortune-result" id="fortuneResult" aria-live="polite">A little festive surprise is waiting for you.</p>
+          <button class="button button-ghost sound-button" id="funnySound" type="button">Play a sweet Diwali sound 🎵</button>
+          <p class="sound-note">A soft little tune plays only when you tap.</p>
+          <div class="fortune-sparkles" aria-hidden="true"><span>✦</span><span>✧</span><span>✦</span></div>
+        </article>
+
+        <article class="fun-card memory-card">
+          <p class="section-kicker">A QUICK FESTIVE GAME</p>
+          <h3>Find the Diwali pairs 🧠</h3>
+          <p class="muted">Flip two cards and find all four matching pairs.</p>
+          <div class="memory-meta">
+            <span>Moves <strong id="memoryMoves">0</strong></span>
+            <span>Pairs <strong id="memoryPairs">0</strong>/4</span>
+          </div>
+          <div class="memory-grid" id="memoryGrid" aria-label="Diwali matching game">
+            <button type="button" class="memory-tile" data-symbol="🪔" aria-label="Hidden card"></button>
+            <button type="button" class="memory-tile" data-symbol="🍬" aria-label="Hidden card"></button>
+            <button type="button" class="memory-tile" data-symbol="🌸" aria-label="Hidden card"></button>
+            <button type="button" class="memory-tile" data-symbol="✨" aria-label="Hidden card"></button>
+            <button type="button" class="memory-tile" data-symbol="🪔" aria-label="Hidden card"></button>
+            <button type="button" class="memory-tile" data-symbol="🍬" aria-label="Hidden card"></button>
+            <button type="button" class="memory-tile" data-symbol="🌸" aria-label="Hidden card"></button>
+            <button type="button" class="memory-tile" data-symbol="✨" aria-label="Hidden card"></button>
+          </div>
+          <p class="memory-status" id="memoryStatus" aria-live="polite">Ready? Find two matching festive pictures.</p>
+          <button class="button button-ghost" id="restartMemory" type="button">Shuffle &amp; play again ↻</button>
+        </article>
+      </div>
+    </section>
 
     
 <!-- SWEETS SECTION -->
@@ -85,30 +209,77 @@
   <p>Because every celebration deserves something sweet!</p>
 
   <div class="sweet-grid">
-    <div class="sweet-card">
-      <div class="sweet-animation laddoo">🟠</div>
+    <article class="sweet-card" data-sweet-rain="🟠">
+      <div class="sweet-art laddoo-art" aria-hidden="true"><span>🟠</span><i></i><i></i><i></i></div>
       <h3>Motichoor Laddoo</h3>
       <p>Round, sweet and full of happiness!</p>
-    </div>
+      <button class="sweet-rain-button" type="button" aria-label="Make it rain Motichoor Laddoos">Make it rain 🟠</button>
+    </article>
 
-    <div class="sweet-card">
-      <div class="sweet-animation">🍥</div>
+    <article class="sweet-card" data-sweet-rain="🍥">
+      <div class="sweet-art jalebi-art" aria-hidden="true"><span>🍥</span><i></i><i></i><i></i></div>
       <h3>Jalebi</h3>
       <p>Twists of sweetness and joy.</p>
-    </div>
+      <button class="sweet-rain-button" type="button" aria-label="Make it rain jalebis">Make it rain 🍥</button>
+    </article>
 
-    <div class="sweet-card">
-      <div class="sweet-animation">🍬</div>
+    <article class="sweet-card" data-sweet-rain="🍬">
+      <div class="sweet-art katli-art" aria-hidden="true"><span>🍬</span><i></i><i></i><i></i></div>
       <h3>Kaju Katli</h3>
       <p>A little piece of celebration.</p>
-    </div>
+      <button class="sweet-rain-button" type="button" aria-label="Make it rain Kaju Katli">Make it rain 🍬</button>
+    </article>
 
-    <div class="sweet-card">
-      <div class="sweet-animation">🍫</div>
-      <h3>Chocolate Treat</h3>
-      <p>For your sweetest moments.</p>
-    </div>
+    <article class="sweet-card" data-sweet-rain="🍮">
+      <div class="sweet-art rasmalai-art" aria-hidden="true"><span>🍮</span><i></i><i></i><i></i></div>
+      <h3>Rasmalai</h3>
+      <p>Soft, milky bites finished with a little festive sweetness.</p>
+      <button class="sweet-rain-button" type="button" aria-label="Make it rain Rasmalai">Make it rain 🍮</button>
+    </article>
+    <article class="sweet-card" data-sweet-rain="🍩">
+      <div class="sweet-art jamun-art" aria-hidden="true"><span>🍩</span><i></i><i></i><i></i></div>
+      <h3>Gulab Jamun</h3>
+      <p>Little syrupy bites of celebration.</p>
+      <button class="sweet-rain-button" type="button" aria-label="Make it rain Gulab Jamun">Make it rain 🍩</button>
+    </article>
+    <article class="sweet-card" data-sweet-rain="🍰">
+      <div class="sweet-art soan-art" aria-hidden="true"><span>🍰</span><i></i><i></i><i></i></div>
+      <h3>Soan Papdi</h3>
+      <p>Flaky festive layers, floating your way.</p>
+      <button class="sweet-rain-button" type="button" aria-label="Make it rain Soan Papdi">Make it rain 🍰</button>
+    </article>
+    <article class="sweet-card" data-sweet-rain="🟡">
+      <div class="sweet-art mysore-art" aria-hidden="true"><span>🟡</span><i></i><i></i><i></i></div>
+      <h3>Mysore Pak</h3>
+      <p>A golden little piece of joy.</p>
+      <button class="sweet-rain-button" type="button" aria-label="Make it rain Mysore Pak">Make it rain 🟡</button>
+    </article>
+    <article class="sweet-card" data-sweet-rain="⚪">
+      <div class="sweet-art rasgulla-art" aria-hidden="true"><span>⚪</span><i></i><i></i><i></i></div>
+      <h3>Rasgulla</h3>
+      <p>Soft, sweet and ready to celebrate.</p>
+      <button class="sweet-rain-button" type="button" aria-label="Make it rain Rasgulla">Make it rain ⚪</button>
+    </article>
+    <article class="sweet-card" data-sweet-rain="🟠">
+      <div class="sweet-art peda-art" aria-hidden="true"><span>🟠</span><i></i><i></i><i></i></div>
+      <h3>Peda</h3>
+      <p>A classic festive favourite.</p>
+      <button class="sweet-rain-button" type="button" aria-label="Make it rain Peda">Make it rain 🟠</button>
+    </article>
+    <article class="sweet-card" data-sweet-rain="🍮">
+      <div class="sweet-art kheer-art" aria-hidden="true"><span>🍮</span><i></i><i></i><i></i></div>
+      <h3>Kheer</h3>
+      <p>A comforting bowl of celebration.</p>
+      <button class="sweet-rain-button" type="button" aria-label="Make it rain Kheer">Make it rain 🍮</button>
+    </article>
+    <article class="sweet-card" data-sweet-rain="🟩">
+      <div class="sweet-art barfi-art" aria-hidden="true"><span>🟩</span><i></i><i></i><i></i></div>
+      <h3>Barfi</h3>
+      <p>A colourful little square of happiness.</p>
+      <button class="sweet-rain-button" type="button" aria-label="Make it rain Barfi">Make it rain 🟩</button>
+    </article>
   </div>
+  <p class="sweet-rain-status" id="sweetRainStatus" aria-live="polite">Pick your favourite sweet and make it rain across the whole page!</p>
 </section>
 
 
@@ -116,24 +287,24 @@
 <section class="festival-section" id="laddooGame">
   <p class="section-tag">Let's play!</p>
   <h2>🟠 Catch the Laddoos</h2>
-  <p>Move your plate and catch as many laddoos as possible!</p>
+  <p>Catch a surprise mix of Indian sweets! Use the arrow buttons, tap, or drag anywhere in the game to move your bowl.</p>
 
-  <div class="game-info">
+  <div class="game-info" aria-live="polite">
     <span>Score: <strong id="laddooScore">0</strong></span>
     <span>Time: <strong id="laddooTime">30</strong>s</span>
   </div>
 
-  <div class="laddoo-game-area" id="laddooGameArea">
+  <div class="laddoo-game-area" id="laddooGameArea" aria-describedby="laddooGameMessage">
     <div class="game-plate" id="gamePlate">🥣</div>
   </div>
 
   <div class="game-controls">
-    <button id="moveLeft">⬅️</button>
-    <button id="startLaddooGame">Start Game ❤️</button>
-    <button id="moveRight">➡️</button>
+    <button id="moveLeft" type="button" aria-label="Move bowl left">⬅️</button>
+    <button id="startLaddooGame" type="button">Start Game ❤️</button>
+    <button id="moveRight" type="button" aria-label="Move bowl right">➡️</button>
   </div>
 
-  <p id="laddooGameMessage">Ready for some sweetness?</p>
+  <p id="laddooGameMessage" aria-live="polite">Ready for some sweetness?</p>
 </section>
 
 
@@ -144,16 +315,18 @@
   <p>Music, lights and endless celebrations!</p>
 
   <div class="dance-stage" id="danceStage">
-    <div class="dancer dancer-one">💃</div>
-    <div class="dancer dancer-two">🕺</div>
-    <div class="dancer dancer-three">💃</div>
+    <div class="dancer dancer-one" aria-label="Dancer">💃</div>
+    <div class="dancer dancer-two" aria-label="Dancer">🕺</div>
+    <div class="dancer dancer-three" aria-label="Dancer">💃</div>
+    <div class="dancer dancer-four" aria-label="Dancer">🪩</div>
+    <div class="dancer dancer-five" aria-label="Dancer">🕺</div>
   </div>
 
-  <button id="danceToggle" class="festival-btn">
-    Start Dancing ✨
+  <button id="danceToggle" class="festival-btn" type="button" aria-pressed="false">
+    Start Dancing + Music 🎶
   </button>
 
-  <p id="danceMessage">The dance floor is waiting for you!</p>
+  <p id="danceMessage" aria-live="polite">Tap to start the dancers and an original festive tune. Sound is off until you choose to play.</p>
 </section>
 
 
@@ -164,7 +337,7 @@
   <p>A little colour to make your celebration brighter.</p>
 
   <div class="rangoli-stage">
-    <div class="rangoli" id="rangoliArt">
+    <div class="rangoli" id="rangoliArt" data-style="classic">
       <div class="rangoli-ring ring-one"></div>
       <div class="rangoli-ring ring-two"></div>
       <div class="rangoli-ring ring-three"></div>
@@ -175,12 +348,67 @@
       <div class="rangoli-petal petal-four"></div>
       <div class="rangoli-petal petal-five"></div>
       <div class="rangoli-petal petal-six"></div>
+      <div class="rangoli-petal petal-seven"></div>
+      <div class="rangoli-petal petal-eight"></div>
     </div>
   </div>
 
-  <button id="changeRangoli" class="festival-btn">
-    Change Rangoli Colours 🌈
+  <button id="changeRangoli" class="festival-btn" type="button">
+    Change Rangoli Style &amp; Colours 🌈
   </button>
+  <p class="rangoli-style-label" id="rangoliStyleLabel" aria-live="polite">Classic rangoli</p>
+</section>
+
+<section class="festival-section world-diwali-section" id="diwali-world">
+  <p class="section-tag">One festival, many homes</p>
+  <h2>🌍 Light up Diwali around the world</h2>
+  <p>Tap a glowing city to send a little festive love there.</p>
+  <div class="world-map-card">
+    <div class="world-map" role="group" aria-label="Choose a city to send Diwali wishes">
+      <svg class="world-map-art" viewBox="0 0 800 380" role="img" aria-labelledby="worldMapTitle worldMapDescription">
+        <title id="worldMapTitle">World map with Diwali celebration cities</title>
+        <desc id="worldMapDescription">A decorative world map with selectable lights in cities where Diwali is celebrated.</desc>
+        <path class="map-land" d="M66 93 100 61 153 48 198 61 224 80 216 103 187 112 173 132 147 142 132 168 115 174 103 155 83 145 77 124 59 113ZM179 171 207 181 222 205 218 237 231 263 217 292 206 322 192 306 189 280 173 259 169 229 157 205ZM310 71 337 56 370 61 389 73 418 72 434 84 429 100 409 103 393 119 373 119 360 133 343 127 330 108 314 102ZM370 138 398 133 419 147 430 170 424 194 415 213 408 241 392 264 376 249 370 226 358 208 356 183 344 163 350 145ZM427 76 471 62 518 60 561 72 594 69 627 88 671 91 704 113 686 131 654 126 633 142 602 137 586 156 559 151 540 170 513 161 492 177 466 165 447 145 427 133 412 111ZM476 178 500 170 524 179 535 198 527 216 513 224 503 243 486 235 472 216 463 196ZM574 237 605 224 636 229 660 246 678 274 665 294 639 300 613 286 594 270 578 255Z"/>
+        <path class="map-route" d="M460 176Q414 107 392 91M460 176Q230 127 211 115M460 176Q601 137 644 128M460 176Q515 215 525 235"/>
+      </svg>
+      <div class="map-city-markers">
+        <button class="map-city" type="button" data-city="Toronto" style="--map-x:27%;--map-y:28%" aria-label="Send Diwali wishes to Toronto" aria-pressed="false"><span class="map-city-dot"></span><span class="map-city-name">Toronto</span></button>
+        <button class="map-city" type="button" data-city="New York" style="--map-x:29%;--map-y:36%" aria-label="Send Diwali wishes to New York" aria-pressed="false"><span class="map-city-dot"></span><span class="map-city-name">New York</span></button>
+        <button class="map-city" type="button" data-city="London" style="--map-x:49%;--map-y:25%" aria-label="Send Diwali wishes to London" aria-pressed="false"><span class="map-city-dot"></span><span class="map-city-name">London</span></button>
+        <button class="map-city" type="button" data-city="Dubai" style="--map-x:56%;--map-y:40%" aria-label="Send Diwali wishes to Dubai" aria-pressed="false"><span class="map-city-dot"></span><span class="map-city-name">Dubai</span></button>
+        <button class="map-city active" type="button" data-city="Mumbai" style="--map-x:58%;--map-y:48%" aria-label="Send Diwali wishes to Mumbai" aria-pressed="true"><span class="map-city-dot"></span><span class="map-city-name">Mumbai</span></button>
+        <button class="map-city" type="button" data-city="Singapore" style="--map-x:66%;--map-y:62%" aria-label="Send Diwali wishes to Singapore" aria-pressed="false"><span class="map-city-dot"></span><span class="map-city-name">Singapore</span></button>
+        <button class="map-city" type="button" data-city="Tokyo" style="--map-x:80%;--map-y:36%" aria-label="Send Diwali wishes to Tokyo" aria-pressed="false"><span class="map-city-dot"></span><span class="map-city-name">Tokyo</span></button>
+        <button class="map-city" type="button" data-city="Sydney" style="--map-x:83%;--map-y:78%" aria-label="Send Diwali wishes to Sydney" aria-pressed="false"><span class="map-city-dot"></span><span class="map-city-name">Sydney</span></button>
+      </div>
+    </div>
+    <div class="world-map-message" id="worldMapMessage" aria-live="polite">
+      <span class="world-map-sparkles" aria-hidden="true">✦ ✧ ✦</span>
+      <p class="world-map-city" id="worldMapCity">A little light for Mumbai</p>
+      <p class="world-map-greeting" id="worldMapGreeting">Happy Diwali! 🪔</p>
+    </div>
+    <button class="festival-btn" id="surpriseWorldCity" type="button">Send a wish somewhere new ✨</button>
+  </div>
+</section>
+
+<!-- DIGITAL FIREWORKS GAME -->
+<section class="festival-section fireworks-section" id="fireworks">
+  <p class="section-tag">A safe little sky show</p>
+  <h2>🎆 Light up the Diwali sky</h2>
+  <p>Tap a digital firecracker to send a burst of colour into the sky. No real fireworks, just screen sparkle!</p>
+  <div class="fireworks-score" aria-live="polite">Fireworks lit: <strong id="fireworksCount">0</strong></div>
+  <div class="fireworks-sky" id="fireworksSky" aria-label="Digital fireworks launcher">
+    <button class="cracker-button cracker-rocket" type="button" data-kind="rocket" aria-label="Launch digital rocket">🚀<span>Rocket</span></button>
+    <button class="cracker-button cracker-anar" type="button" data-kind="anar" aria-label="Light digital anar fountain">⛲<span>Anar</span></button>
+    <button class="cracker-button cracker-chakri" type="button" data-kind="chakri" aria-label="Spin digital chakri">🌀<span>Chakri</span></button>
+    <button class="cracker-button cracker-phuljhari" type="button" data-kind="phuljhari" aria-label="Sparkle digital phuljhari">✨<span>Phuljhari</span></button>
+  </div>
+  <div class="fireworks-controls">
+    <button class="festival-btn" id="addFirecracker" type="button">Add a firecracker +</button>
+    <button class="festival-btn" id="lightAllFirecrackers" type="button">Light them all ✨</button>
+  </div>
+  <label class="fireworks-haptics"><input id="fireworksHaptics" type="checkbox" checked /> Gentle phone vibration (when supported)</label>
+  <p id="fireworksMessage" aria-live="polite">Tap a digital cracker for colourful screen effects, a soft sound and a gentle phone vibration where supported. No real fireworks.</p>
 </section>
 
 
@@ -214,15 +442,93 @@
       <span>🪔</span>
       <span>🌸</span>
     </div>
+    <div class="station-passenger" id="stationPassenger" aria-hidden="true">
+      <div class="station-woman">
+        <span class="station-hair"></span>
+        <span class="station-face"><i></i><i></i></span>
+        <span class="station-neck"></span>
+        <span class="station-arm station-arm-left"></span>
+        <span class="station-arm station-arm-right"></span>
+        <span class="station-dress"></span>
+        <span class="station-dupatta"></span>
+        <span class="station-leg station-leg-left"></span>
+        <span class="station-leg station-leg-right"></span>
+        <span class="station-shoe station-shoe-left"></span>
+        <span class="station-shoe station-shoe-right"></span>
+        <span class="station-bindi"></span>
+      </div>
+      <span class="passenger-suitcase">🧳</span>
+    </div>
   </div>
 
-  <button id="trainButton" class="festival-btn">
-    Welcome the Train ❤️
+  <button id="trainButton" class="festival-btn" type="button">
+    Start the Diwali journey ❤️
   </button>
 
   <p id="trainMessage">
-    Your special journey is waiting!
+    Watch the train arrive, pause at the station, and bring a special guest home.
   </p>
+</section>
+
+<section class="festival-section outfit-section" id="festive-outfits">
+  <p class="section-tag">A festive look, made by you</p>
+  <h2>✨ Create your Diwali outfit</h2>
+  <p class="outfit-intro">Mix a traditional outfit, a favorite color, and a little sparkle. Switch between women’s and men’s looks anytime.</p>
+  <div class="outfit-builder">
+    <div class="outfit-controls">
+      <fieldset class="outfit-choice-group">
+        <legend>Choose a collection</legend>
+        <div class="outfit-gender-options">
+          <button class="outfit-gender active" type="button" data-gender="women" aria-pressed="true">Women’s looks</button>
+          <button class="outfit-gender" type="button" data-gender="men" aria-pressed="false">Men’s looks</button>
+        </div>
+      </fieldset>
+      <label class="outfit-select-label" for="outfitStyle">Choose your outfit
+        <select id="outfitStyle"></select>
+      </label>
+      <fieldset class="outfit-choice-group">
+        <legend>Pick a color</legend>
+        <div class="outfit-colors" role="group" aria-label="Outfit colors">
+          <button class="outfit-color active" type="button" data-color="#c73d5d" data-color-name="Ruby red" aria-label="Ruby red" aria-pressed="true"><span></span></button>
+          <button class="outfit-color" type="button" data-color="#e0a52e" data-color-name="Marigold" aria-label="Marigold" aria-pressed="false"><span></span></button>
+          <button class="outfit-color" type="button" data-color="#287a68" data-color-name="Jade green" aria-label="Jade green" aria-pressed="false"><span></span></button>
+          <button class="outfit-color" type="button" data-color="#6753a1" data-color-name="Royal purple" aria-label="Royal purple" aria-pressed="false"><span></span></button>
+          <button class="outfit-color" type="button" data-color="#24759a" data-color-name="Peacock blue" aria-label="Peacock blue" aria-pressed="false"><span></span></button>
+        </div>
+      </fieldset>
+      <label class="outfit-select-label" for="outfitAccessory">Add an accessory
+        <select id="outfitAccessory">
+          <option value="✨">Festive sparkle</option>
+          <option value="🌼">Marigold flowers</option>
+          <option value="💎">Jewels</option>
+          <option value="🪔">Diya glow</option>
+        </select>
+      </label>
+    </div>
+    <div class="outfit-preview-wrap">
+      <div class="outfit-preview women" id="outfitPreview" style="--outfit-color: #c73d5d">
+        <span class="outfit-preview-spark" aria-hidden="true">✦</span>
+        <div class="outfit-character woman style-saree" id="outfitAvatar" role="img" aria-label="Full-body woman in a ruby red saree">
+          <span class="outfit-hair"></span>
+          <span class="outfit-head"><i></i><i></i><b></b></span>
+          <span class="outfit-neck"></span>
+          <span class="outfit-arm outfit-arm-left"></span>
+          <span class="outfit-arm outfit-arm-right"></span>
+          <span class="outfit-top"></span>
+          <span class="outfit-garment"></span>
+          <span class="outfit-dupatta"></span>
+          <span class="outfit-leg outfit-leg-left"></span>
+          <span class="outfit-leg outfit-leg-right"></span>
+          <span class="outfit-shoe outfit-shoe-left"></span>
+          <span class="outfit-shoe outfit-shoe-right"></span>
+          <span class="outfit-bindi"></span>
+        </div>
+        <span class="outfit-accessory" id="outfitAccessoryPreview" aria-hidden="true">✨</span>
+        <p class="outfit-preview-title" id="outfitPreviewTitle">Ruby red Saree</p>
+      </div>
+      <p class="outfit-status" id="outfitStatus" aria-live="polite">Your Ruby red Saree is ready for the celebration!</p>
+    </div>
+  </div>
 </section>
 
 
@@ -230,6 +536,7 @@
     <footer>Wishing you a safe journey & a sparkling Diwali <span>🪔</span></footer>
   </main>
   <div class="toast" id="toast" role="status"></div>
+  <div class="sweet-rain-layer" id="sweetRainLayer" aria-hidden="true"></div>
   <script src="js/checklist.js"></script><script src="js/countdown.js"></script><script src="js/reminders.js"></script><script src="js/script.js"></script>
 </body>
 </html>
